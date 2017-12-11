@@ -1,6 +1,21 @@
-## Raden HR API documentation
+# Raden HR API documentation
 
-[TOC]
+Human resource manager api
+
+# Table of contents
+
+* [Authorizing users](#authorizing-users)
+   * [Available methods](#available-methods)
+      * [POST v1/oauth/token](#post-v1oauthtoken)
+      * [GET v1/oauth/tokens](#get-v1oauthtokens)
+      * [DELETE v1/oauth/tokens/{token_id}](#delete-v1oauthtokenstoken_id)
+      * [GET v1/oauth/personal-access-tokens](#get-v1oauthpersonal-access-tokens)
+      * [DELETE v1/oauth/personal-access-tokens/{token_id}](#delete-v1oauthpersonal-access-tokenstoken_id)
+      * [POST v1/oauth/token/refresh](#post-v1oauthtokenrefresh)
+      * [POST v1/logout](#post-v1logout)
+      * [POST v1/password/email](#post-v1passwordemail)
+      * [POST v1/password/reset](#post-v1passwordreset)
+
 
 ### Authorizing users
 >Raden api uses OAuth2.0 authentication protocol for authenticating clients
