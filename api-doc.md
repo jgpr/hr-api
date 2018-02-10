@@ -29,16 +29,22 @@ Table of Contents
         * [Create new device](#create-new-device)
         * [Get devices list](#get-devices-list)
         * [Get device by id](#get-device-by-id)
-    * [Update device by id](#update-device-by-id)
+        * [Update device by id](#update-device-by-id)
         * [Raden-T41 Devices API](#raden-t41-devices-api)
             * [Test device connection](#test-device-connection)
             * [Get clockings from device](#get-clockings-from-device)
-        * [Clockings resource](#clockings-resource)
-            * [create new clocking](#create-new-clocking)
-            * [Get clockings list](#get-clockings-list)
-            * [Get clocking by id](#get-clocking-by-id)
-            * [Update a clocking](#update-a-clocking)
-            * [Get clocking reasons list](#get-clocking-reasons-list)
+    * [Clockings resource](#clockings-resource)
+        * [create new clocking](#create-new-clocking)
+        * [Get clockings list](#get-clockings-list)
+        * [Get clocking by id](#get-clocking-by-id)
+        * [Update a clocking](#update-a-clocking)
+        * [Get clocking reasons list](#get-clocking-reasons-list)
+        * [Delete Clocking](#Delete-Clocking)
+        * [Restore Clocking](#Restore-Clocking-Was-Deleted)
+    * [Report Resource](#Report-Resource)
+        * [Full Report](#Full-Report)
+    * [Position Resource](#Position-Resource)
+        * [Get Position list](#Get-Position-List)
 
 
 ## API basic syntax
@@ -945,3 +951,359 @@ Response:
     }
 }
 ```
+###### Delete Clocking
+
+- Method: `DELETE`
+- Request: `v1/ta/clockings/{clocking_id}`
+- Response:
+```json
+{
+  "status": "OK",
+  "code": 200,
+  "message": "Delete success",
+  "links": {
+    "POST": "http://api.jgpr.local/v1/ta/clockings"
+  }
+}
+```
+###### Restore Clocking Was Deleted
+
+- Method: `PUT`
+- Request: `v1/ta/clockings/{clocking_id}/restore`
+- Response:
+```json
+{
+  "status": "OK",
+  "code": 200,
+  "message": "Restore success",
+  "data": [
+    {
+      "id": 29,
+      "device_id": null,
+      "user_id": 25,
+      "io_id": null,
+      "type": "clock_in",
+      "reason_id": 1,
+      "datetime": "2018-02-05 12:00:00",
+      "changed": 0,
+      "status": "waiting",
+      "description": null,
+      "deleted_at": null,
+      "created_at": "2018-02-05 10:00:25",
+      "updated_at": "2018-02-07 16:29:54"
+    }
+  ],
+  "links": {
+    "DELETE": "http://api.jgpr.local/v1/ta/clockings/{clocking_id}"
+  }
+}
+```
+### Report Resource
+
+###### Full Report
+
+- Method: `POST`
+- Request: `/v1/ta/reports/59704313b5a81/run`
+```json
+{
+  "date_from": "2017-12-22",
+  "date_to": "2018-2-10",
+  "year": "1396",
+  "positions": [
+    1
+  ],
+  "type": "default|day|second"
+}
+```
+- Response:
+```json
+{
+    "status": "OK",
+    "code": 200,
+    "message": "Report success",
+    "data": {
+        "header": {
+            "payload": [
+                {
+                    "key": "person",
+                    "value": "Person",
+                    "priority": 20,
+                    "values_type": "string",
+                    "filter": {
+                        "type": "list",
+                        "filterable": [
+                            "رضا یاوری"
+                        ]
+                    },
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "personnel_id",
+                    "value": "Personnel ID",
+                    "priority": 19,
+                    "values_type": "string",
+                    "filter": {
+                        "type": "list",
+                        "filterable": [
+                            "112233"
+                        ]
+                    },
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "recruitment_type",
+                    "value": "Recruitment type",
+                    "priority": 18,
+                    "values_type": "string",
+                    "filter": {
+                        "type": "list",
+                        "filterable": []
+                    },
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "fraction",
+                    "value": "Fraction",
+                    "priority": -20,
+                    "values_type": "string",
+                    "filter": {
+                        "type": "list",
+                        "filterable": []
+                    },
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "58512e5ecf247",
+                    "value": "کارکرد",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "583eaaa35b488",
+                    "value": "اضافه آخر وقت",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "583eaafec0ebe",
+                    "value": "تاخیر",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "583eab35558ed",
+                    "value": "غیبت روزانه",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "58732d6ccc3de",
+                    "value": "مرخصی روزانه",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "5875ea766e730",
+                    "value": "مرخصی ساعتی",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "5875ea766f005",
+                    "value": "مرخصی روزانه - استحقاقی",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                },
+                {
+                    "key": "59704313b5a04",
+                    "value": "حق صبحانه",
+                    "priority": 1,
+                    "values_type": "string",
+                    "filter": null,
+                    "sortable": true,
+                    "props": true
+                }
+            ],
+            "props": null
+        },
+        "payload": [
+            {
+                "body": [
+                    {
+                        "payload": {
+                            "person": "رضا یاوری",
+                            "personnel_id": "112233",
+                            "recruitment_type": "",
+                            "props": null,
+                            "58512e5ecf247": "36:00",
+                            "59704313b5a04": 4,
+                            "fraction": "248:30",
+                            "583eaafec0ebe": "248:30",
+                            "583eab35558ed": 31,
+                            "583eaaa35b488": "01:30",
+                            "58732d6ccc3de": 9,
+                            "5875ea766f005": 4,
+                            "5875ea766e730": "04:00"
+                        },
+                        "props": null
+                    }
+                ],
+                "footer": [
+                    {
+                        "payload": {
+                            "props": null,
+                            "58512e5ecf247": "36:00",
+                            "59704313b5a04": 4,
+                            "fraction": "248:30",
+                            "583eaafec0ebe": "248:30",
+                            "583eab35558ed": 31,
+                            "583eaaa35b488": "01:30",
+                            "58732d6ccc3de": 9,
+                            "5875ea766f005": 4,
+                            "5875ea766e730": "04:00"
+                        },
+                        "props": null
+                    },
+                    {
+                        "payload": {
+                            "props": null,
+                            "58512e5ecf247": "36:00",
+                            "59704313b5a04": 4,
+                            "fraction": "248:30",
+                            "583eaafec0ebe": "248:30",
+                            "583eab35558ed": 31,
+                            "583eaaa35b488": "01:30",
+                            "58732d6ccc3de": 9,
+                            "5875ea766f005": 4,
+                            "5875ea766e730": "04:00"
+                        },
+                        "props": null
+                    }
+                ],
+                "props": {}
+            }
+        ],
+        "props": {
+            "range": {
+                "start": "2017-12-22",
+                "stop": "2018-02-10"
+            },
+            "date": "2018-02-10 12:46:02"
+        }
+    }
+}
+```
+### Position Resource
+
+###### Get Position List
+    
+- Method: `GET`
+- Request: `v1/positions?includes[0]=user.profile`
+- Response:
+```json
+{
+    "status": "OK",
+    "code": 200,
+    "message": "Positions",
+    "data": {
+        "positions": [
+            {
+                "id": 1,
+                "name": "دپارتمان رضا",
+                "position_id": null,
+                "type": "department",
+                "user_id": null,
+                "active": 1,
+                "deleted_at": null,
+                "created_at": null,
+                "updated_at": null,
+                "user": null
+            },
+            ...
+            {
+                "id": 5,
+                "name": "پست ۲",
+                "position_id": 3,
+                "type": "post",
+                "user_id": 26,
+                "active": 1,
+                "deleted_at": null,
+                "created_at": "2018-01-21 21:53:13",
+                "updated_at": "2018-01-21 21:53:13",
+                "user": {
+                    "id": 26,
+                    "name": null,
+                    "email": "reza@yavari.net",
+                    "deleted_at": null,
+                    "created_at": "2018-01-21 21:30:26",
+                    "updated_at": "2018-01-21 21:30:26",
+                    "profile": {
+                        "id": 3,
+                        "user_id": 26,
+                        "personnel_id": "111",
+                        "company_id": 1,
+                        "first_name": "مهدی",
+                        "last_name": "حسینی",
+                        "national_code": "1111111111",
+                        "father_name": "نام پدر",
+                        "birthday": "1995-08-28 00:00:00",
+                        "birth_certificate_number": "123321",
+                        "birth_place": "تولذ",
+                        "birth_register_place": "صورد",
+                        "nationality": "ایرانی",
+                        "married": 0,
+                        "sex": "male",
+                        "address": null,
+                        "education": 2,
+                        "military": 4,
+                        "avatar": null,
+                        "created_at": "2018-01-21 21:30:26",
+                        "updated_at": "2018-01-21 21:30:26",
+                        "deleted_at": null
+                    }
+                }
+            }
+        ]
+    },
+    "links": {
+        "POST": "http://api.jgpr.local/v1/positions/"
+    },
+    "meta": {
+        "total": 0,
+        "total_in_page": 0,
+        "total_pages": 0,
+        "current_page": 0,
+        "limit": 0,
+        "from": 0,
+        "to": null,
+        "next": null,
+        "prev": null
+    }
+}
+```
+    
